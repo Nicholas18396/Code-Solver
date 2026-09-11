@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Solve Log</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <style>
   :root{
     --paper: #E9E6DC;
@@ -429,26 +428,117 @@
       <h1>The Solve Log</h1>
       <p>A running record of problems cracked — the prompt, the approach, and the code that got there.</p>
     </div>
-    <div class="stats" id="stats"></div>
+    <div class="stats" id="stats">
+      <div class="stat"><span class="n">0</span><span class="l">solved</span></div>
+      <div class="stat easy"><span class="n">0</span><span class="l">easy</span></div>
+      <div class="stat medium"><span class="n">0</span><span class="l">medium</span></div>
+      <div class="stat hard"><span class="n">0</span><span class="l">hard</span></div>
+    </div>
   </header>
 
   <div class="toolbar">
-    <input class="search" id="searchInput" type="text" placeholder="Search by title or topic…">
+    <input class="search" id="searchInput" type="text" placeholder="Search by title or topic…" fdprocessedid="dlehb">
     <div class="pill-group" id="diffFilters">
-      <button class="pill active" data-diff="all">All</button>
-      <button class="pill easy" data-diff="Easy">Easy</button>
-      <button class="pill medium" data-diff="Medium">Medium</button>
-      <button class="pill hard" data-diff="Hard">Hard</button>
+      <button class="pill active" data-diff="all" fdprocessedid="l8mst">All</button>
+      <button class="pill easy" data-diff="Easy" fdprocessedid="7ttim">Easy</button>
+      <button class="pill medium" data-diff="Medium" fdprocessedid="mtcw2b">Medium</button>
+      <button class="pill hard" data-diff="Hard" fdprocessedid="uzfki1">Hard</button>
     </div>
-    <button class="new-btn" id="newBtn">+ New entry</button>
+    <button class="new-btn" id="newBtn" fdprocessedid="dfdebc">+ New entry</button>
   </div>
 
   <div class="board">
-    <div class="list-pane" id="listPane"></div>
-    <div class="detail-pane" id="detailPane"></div>
+    <div class="list-pane" id="listPane"><div class="list-empty">No problems logged yet. Add your first solve with "+ New entry".</div></div>
+    <div class="detail-pane" id="detailPane">
+      <div class="detail-head">
+        <h2>New entry</h2>
+      </div>
+      <div class="form" id="entryForm">
+        <div class="field">
+          <label>Problem title</label>
+          <input type="text" id="f_title" value="" placeholder="e.g. Two Sum" fdprocessedid="6ee75r">
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>Difficulty</label>
+            <select id="f_difficulty" fdprocessedid="m3e0bc">
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Question type / topics (comma separated)</label>
+            <input type="text" id="f_types" value="" placeholder="Array, Hash Map, Two Pointers" fdprocessedid="uruwhp">
+          </div>
+        </div>
+        <div class="field">
+          <label>Prompt</label>
+          <textarea id="f_prompt" rows="5" placeholder="Paste or summarize the problem statement…"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Examples</label>
+          <div id="examplesEdit" style="display:flex;flex-direction:column;gap:10px;">
+      <div class="example-edit" data-index="0">
+        <button type="button" class="remove-ex" data-remove="0" fdprocessedid="lx5v5">remove</button>
+        <div class="row2">
+          <div class="field" style="margin-bottom:0;">
+            <label>Input</label>
+            <input type="text" data-field="input" value="" placeholder="nums = [2,7,11,15], target = 9" fdprocessedid="6ri4rc">
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label>Output</label>
+            <input type="text" data-field="output" value="" placeholder="[0,1]" fdprocessedid="bl0qwa">
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Explanation (optional)</label>
+          <input type="text" data-field="explanation" value="" placeholder="nums[0] + nums[1] == 9" fdprocessedid="hkxk87">
+        </div>
+      </div>
+    
+      <div class="example-edit" data-index="1">
+        <button type="button" class="remove-ex" data-remove="1" fdprocessedid="hw9vik">remove</button>
+        <div class="row2">
+          <div class="field" style="margin-bottom:0;">
+            <label>Input</label>
+            <input type="text" data-field="input" value="" placeholder="nums = [2,7,11,15], target = 9" fdprocessedid="673dwi">
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label>Output</label>
+            <input type="text" data-field="output" value="" placeholder="[0,1]" fdprocessedid="aa26g">
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Explanation (optional)</label>
+          <input type="text" data-field="explanation" value="" placeholder="nums[0] + nums[1] == 9" fdprocessedid="3ree9g">
+        </div>
+      </div>
+    </div>
+          <button type="button" class="add-ex-btn" id="addExBtn" style="margin-top:10px;" fdprocessedid="w4ri1w">+ Add example</button>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label>Language</label>
+            <input type="text" id="f_language" value="" placeholder="Python, JavaScript, C++…" fdprocessedid="54rf27">
+          </div>
+        </div>
+        <div class="field">
+          <label>Your code</label>
+          <textarea id="f_code" rows="10" placeholder="def twoSum(nums, target):\n    ..."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="save-btn" id="saveBtn" fdprocessedid="klwmi">Save entry</button>
+          <button type="button" class="cancel-btn" id="cancelBtn" fdprocessedid="mj0h2q">Cancel</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="footnote">Saved locally in this browser · <button id="downloadBtn">download index.html</button> · <button id="resetBtn">clear all entries</button></div>
+  <div class="footnote">Saved locally in this browser · <button id="downloadBtn" fdprocessedid="10ofbk">download index.html</button> · <button id="resetBtn" fdprocessedid="tccspp">clear all entries</button></div>
   <p class="footnote" style="margin-top:10px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);text-align:center;line-height:1.6;">
     Every save downloads a fresh <code>index.html</code> with your data baked in.
     Most browsers won't overwrite the old copy automatically — they'll save it as
@@ -458,7 +548,7 @@
     replace it directly.
   </p>
 
-<script type="application/json" id="seedData">[]</script>
+<script type="application/json" id="seedData">[{"id":"entry_1789166449348_x85uz","title":"Data Compression of Strings","difficulty":"Medium","types":["Strings"],"prompt":"Compress a list of strings down into a simplified format. Compress when the letter is seen >= target times consecutively.","language":"","code":"def compress_strings(array, target):\n    out_list = []\n    for i in range(len(array)):\n        string = array[i]\n        prev_let = \"\"\n        iter_list = \"\"\n        counter = 0\n        for j in range(len(string)):\n            curr_let = string[j]\n            if curr_let == prev_let:\n                counter+=1\n            else:\n                if counter < 3:\n                    for k in range(counter):\n                        iter_list += prev_let\n                else:\n                    iter_list += prev_let + str(counter)\n                counter = 1\n            prev_let = curr_let\n            #print(iter_list)\n            #print(curr_let)\n        if counter < target:\n            for k in range(counter):\n                iter_list += prev_let\n        else:\n            iter_list += prev_let + str(counter)\n        out_list.append(iter_list)\n\n    return out_list","examples":[{"input":"array = ['aaaaaaaaaaaaaaaaaaabbcccccccccccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'], target = 3","output":"out_string = ['a19bbc27a30']","explanation":""},{"input":"Input array = ['aaabbcccccaaaabcccd', 'aa', 'bccdabbbbbbaaaaa'], target = 3","output":"out_string = ['a3bbc5a4bc3d', 'aa', 'bccdab6a5']","explanation":""}],"createdAt":1789166449348}]</script>
 <script>
 (function(){
   const STORAGE_KEY = 'leetcode-entries';
@@ -866,5 +956,6 @@
   loadEntries();
 })();
 </script>
-</body>
-</html>
+
+
+</div><div id="hl-aria-live-message-container" aria-live="polite" class="visually-hidden"></div><div id="hl-aria-live-alert-container" role="alert" aria-live="assertive" class="visually-hidden"></div><span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>
