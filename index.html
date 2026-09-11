@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Solve Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #E9E6DC;
+    --paper-raised: #F2F0E7;
+    --ink: #22261F;
+    --ink-soft: #565A4E;
+    --line: #C7C2AE;
+    --line-soft: #DAD5C4;
+    --accent: #2F5F5A;
+    --accent-soft: #DCE5E0;
+    --easy: #46744F;
+    --medium: #A9762C;
+    --hard: #9C4335;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    min-height:100vh;
+  }
+  ::selection{background:var(--accent-soft);}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:40px 28px 80px;
+  }
+
+  /* Header */
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:24px;
+    padding-bottom:28px;
+    border-bottom:2px solid var(--ink);
+    margin-bottom:28px;
+  }
+  header h1{
+    font-size:42px;
+    font-weight:600;
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
+  }
+  header p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:16px;
+    max-width:46ch;
+    line-height:1.5;
+  }
+  .stats{
+    display:flex;
+    gap:28px;
+    font-family:var(--mono);
+  }
+  .stat{text-align:right;}
+  .stat .n{
+    font-size:28px;
+    font-weight:600;
+    line-height:1;
+    display:block;
+  }
+  .stat .l{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:4px;
+    display:block;
+  }
+  .stat.easy .n{color:var(--easy);}
+  .stat.medium .n{color:var(--medium);}
+  .stat.hard .n{color:var(--hard);}
+
+  /* Toolbar */
+  .toolbar{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+  .search{
+    flex:1;
+    min-width:200px;
+    font-family:var(--mono);
+    font-size:14px;
+    padding:10px 14px;
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    color:var(--ink);
+    border-radius:3px;
+  }
+  .search:focus{outline:none;border-color:var(--accent);}
+  .pill-group{display:flex;gap:6px;}
+  .pill{
+    font-family:var(--mono);
+    font-size:12.5px;
+    padding:8px 13px;
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    border-radius:20px;
+    cursor:pointer;
+    transition:border-color .15s, color .15s, background .15s;
+  }
+  .pill:hover{border-color:var(--ink-soft);}
+  .pill.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pill.active.easy{background:var(--easy);border-color:var(--easy);}
+  .pill.active.medium{background:var(--medium);border-color:var(--medium);}
+  .pill.active.hard{background:var(--hard);border-color:var(--hard);}
+  .new-btn{
+    font-family:var(--mono);
+    font-size:13px;
+    padding:10px 16px;
+    background:var(--ink);
+    color:var(--paper);
+    border:none;
+    border-radius:3px;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .new-btn:hover{background:var(--accent);}
+
+  /* Layout */
+  .board{
+    display:grid;
+    grid-template-columns:340px 1fr;
+    gap:0;
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    background:var(--paper-raised);
+    min-height:460px;
+  }
+  @media (max-width:800px){
+    .board{grid-template-columns:1fr;}
+    .list-pane{border-right:none !important;border-bottom:1px solid var(--line);}
+  }
+
+  .list-pane{
+    border-right:1px solid var(--line);
+    max-height:720px;
+    overflow-y:auto;
+  }
+  .entry-row{
+    display:flex;
+    gap:12px;
+    padding:14px 18px;
+    border-bottom:1px solid var(--line-soft);
+    border-left:3px solid transparent;
+    cursor:pointer;
+    transition:background .12s;
+  }
+  .entry-row:hover{background:var(--accent-soft);}
+  .entry-row.selected{background:var(--accent-soft);border-left-color:var(--accent);}
+  .entry-row.easy{border-left-color:var(--easy);}
+  .entry-row.medium{border-left-color:var(--medium);}
+  .entry-row.hard{border-left-color:var(--hard);}
+  .entry-row.selected.easy{border-left-color:var(--easy);}
+  .entry-row.selected.medium{border-left-color:var(--medium);}
+  .entry-row.selected.hard{border-left-color:var(--hard);}
+  .entry-row .num{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-soft);
+    padding-top:2px;
+    min-width:22px;
+  }
+  .entry-row .meta{flex:1;min-width:0;}
+  .entry-row .title{
+    font-weight:600;
+    font-size:15px;
+    margin:0 0 4px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .entry-row .tags{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .diff-tag{font-weight:600;}
+  .diff-tag.easy{color:var(--easy);}
+  .diff-tag.medium{color:var(--medium);}
+  .diff-tag.hard{color:var(--hard);}
+
+  .list-empty{
+    padding:40px 24px;
+    color:var(--ink-soft);
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  /* Detail pane */
+  .detail-pane{padding:32px 38px;overflow-y:auto;max-height:720px;}
+  .detail-empty{
+    height:100%;
+    min-height:400px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:14px;
+    color:var(--ink-soft);
+    text-align:center;
+    padding:40px;
+  }
+  .detail-empty .big{font-size:20px;font-family:var(--serif);color:var(--ink);}
+  .detail-empty p{max-width:34ch;font-size:14.5px;line-height:1.6;margin:0;}
+
+  .detail-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+    margin-bottom:6px;
+  }
+  .detail-head h2{
+    font-size:26px;
+    margin:0;
+    font-weight:600;
+    line-height:1.25;
+  }
+  .detail-actions{display:flex;gap:8px;flex-shrink:0;}
+  .icon-btn{
+    font-family:var(--mono);
+    font-size:12px;
+    padding:7px 12px;
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    border-radius:3px;
+    cursor:pointer;
+  }
+  .icon-btn:hover{border-color:var(--ink);color:var(--ink);}
+  .icon-btn.danger:hover{border-color:var(--hard);color:var(--hard);}
+
+  .detail-tags{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin:10px 0 26px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .type-chip{
+    background:var(--accent-soft);
+    color:var(--accent);
+    padding:3px 9px;
+    border-radius:12px;
+  }
+
+  .section-label{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin:0 0 8px;
+    padding-bottom:6px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .prompt-block{
+    font-size:15.5px;
+    line-height:1.65;
+    color:var(--ink);
+    white-space:pre-wrap;
+    margin-bottom:28px;
+  }
+
+  .examples{margin-bottom:28px;display:flex;flex-direction:column;gap:12px;}
+  .example{
+    border:1px solid var(--line-soft);
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .example-io{display:grid;grid-template-columns:1fr 1fr;}
+  @media (max-width:560px){.example-io{grid-template-columns:1fr;}}
+  .io-cell{padding:12px 14px;font-family:var(--mono);font-size:13px;}
+  .io-cell + .io-cell{border-left:1px solid var(--line-soft);}
+  @media (max-width:560px){.io-cell + .io-cell{border-left:none;border-top:1px solid var(--line-soft);}}
+  .io-cell .k{color:var(--ink-soft);font-size:11px;margin-bottom:5px;}
+  .io-cell .v{white-space:pre-wrap;word-break:break-word;}
+  .example-explain{
+    padding:10px 14px;
+    font-size:13px;
+    font-family:var(--serif);
+    color:var(--ink-soft);
+    border-top:1px solid var(--line-soft);
+    background:var(--paper);
+  }
+
+  .code-block{
+    background:#20241E;
+    color:#E9E6DC;
+    font-family:var(--mono);
+    font-size:13px;
+    line-height:1.6;
+    padding:18px 20px;
+    border-radius:3px;
+    overflow-x:auto;
+    white-space:pre;
+  }
+
+  /* Form */
+  .form{display:flex;flex-direction:column;gap:18px;}
+  .field label{
+    display:block;
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .field input[type=text], .field textarea, .field select{
+    width:100%;
+    font-family:var(--serif);
+    font-size:15px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:3px;
+    background:var(--paper);
+    color:var(--ink);
+    resize:vertical;
+  }
+  .field textarea{font-family:var(--mono);font-size:13.5px;line-height:1.55;}
+  .field input:focus, .field textarea:focus, .field select:focus{outline:none;border-color:var(--accent);}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:560px){.row2{grid-template-columns:1fr;}}
+
+  .example-edit{
+    border:1px solid var(--line-soft);
+    border-radius:3px;
+    padding:14px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    position:relative;
+  }
+  .example-edit .remove-ex{
+    position:absolute;
+    top:10px;
+    right:10px;
+    background:none;
+    border:none;
+    color:var(--ink-soft);
+    cursor:pointer;
+    font-family:var(--mono);
+    font-size:12px;
+  }
+  .example-edit .remove-ex:hover{color:var(--hard);}
+  .add-ex-btn{
+    align-self:flex-start;
+    font-family:var(--mono);
+    font-size:12.5px;
+    background:none;
+    border:1px dashed var(--line);
+    color:var(--ink-soft);
+    padding:8px 14px;
+    border-radius:3px;
+    cursor:pointer;
+  }
+  .add-ex-btn:hover{border-color:var(--ink-soft);color:var(--ink);}
+
+  .form-actions{
+    display:flex;
+    gap:10px;
+    margin-top:6px;
+    padding-top:18px;
+    border-top:1px solid var(--line-soft);
+  }
+  .save-btn{
+    font-family:var(--mono);
+    font-size:13.5px;
+    padding:11px 22px;
+    background:var(--ink);
+    color:var(--paper);
+    border:none;
+    border-radius:3px;
+    cursor:pointer;
+  }
+  .save-btn:hover{background:var(--accent);}
+  .cancel-btn{
+    font-family:var(--mono);
+    font-size:13.5px;
+    padding:11px 18px;
+    background:none;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    border-radius:3px;
+    cursor:pointer;
+  }
+  .cancel-btn:hover{border-color:var(--ink);color:var(--ink);}
+
+  .footnote{
+    margin-top:18px;
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+  .footnote button{
+    background:none;border:none;color:var(--accent);cursor:pointer;
+    font-family:var(--mono);font-size:11.5px;text-decoration:underline;padding:0;
+  }
+  .loading{padding:60px;text-align:center;color:var(--ink-soft);font-family:var(--mono);font-size:13px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>The Solve Log</h1>
+      <p>A running record of problems cracked — the prompt, the approach, and the code that got there.</p>
+    </div>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <div class="toolbar">
+    <input class="search" id="searchInput" type="text" placeholder="Search by title or topic…">
+    <div class="pill-group" id="diffFilters">
+      <button class="pill active" data-diff="all">All</button>
+      <button class="pill easy" data-diff="Easy">Easy</button>
+      <button class="pill medium" data-diff="Medium">Medium</button>
+      <button class="pill hard" data-diff="Hard">Hard</button>
+    </div>
+    <button class="new-btn" id="newBtn">+ New entry</button>
+  </div>
+
+  <div class="board">
+    <div class="list-pane" id="listPane"></div>
+    <div class="detail-pane" id="detailPane"></div>
+  </div>
+
+  <div class="footnote">Saved to this browser's Claude storage · <button id="resetBtn">clear all entries</button></div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_KEY = 'leetcode-entries';
+  let entries = [];
+  let selectedId = null;
+  let mode = 'detail'; // detail | form
+  let editingId = null;
+  let filterDiff = 'all';
+  let searchTerm = '';
+  let loaded = false;
+
+  const listPane = document.getElementById('listPane');
+  const detailPane = document.getElementById('detailPane');
+  const statsEl = document.getElementById('stats');
+  const searchInput = document.getElementById('searchInput');
+  const diffFilters = document.getElementById('diffFilters');
+  const newBtn = document.getElementById('newBtn');
+  const resetBtn = document.getElementById('resetBtn');
+
+  function escapeHtml(s){
+    return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  async function loadEntries(){
+    detailPane.innerHTML = '<div class="loading">Loading your log…</div>';
+    try{
+      const res = await window.storage.get(STORAGE_KEY, false);
+      entries = res && res.value ? JSON.parse(res.value) : [];
+    }catch(e){
+      entries = [];
+    }
+    loaded = true;
+    render();
+  }
+
+  async function persist(){
+    try{
+      const result = await window.storage.set(STORAGE_KEY, JSON.stringify(entries), false);
+      if(!result) console.error('Storage set returned no result');
+    }catch(e){
+      console.error('Storage error', e);
+    }
+  }
+
+  function difficultyClass(d){
+    return (d||'').toLowerCase();
+  }
+
+  function filteredEntries(){
+    return entries.filter(e=>{
+      if(filterDiff !== 'all' && e.difficulty !== filterDiff) return false;
+      if(searchTerm){
+        const hay = (e.title + ' ' + (e.types||[]).join(' ')).toLowerCase();
+        if(!hay.includes(searchTerm.toLowerCase())) return false;
+      }
+      return true;
+    });
+  }
+
+  function renderStats(){
+    const easy = entries.filter(e=>e.difficulty==='Easy').length;
+    const medium = entries.filter(e=>e.difficulty==='Medium').length;
+    const hard = entries.filter(e=>e.difficulty==='Hard').length;
+    statsEl.innerHTML = `
+      <div class="stat"><span class="n">${entries.length}</span><span class="l">solved</span></div>
+      <div class="stat easy"><span class="n">${easy}</span><span class="l">easy</span></div>
+      <div class="stat medium"><span class="n">${medium}</span><span class="l">medium</span></div>
+      <div class="stat hard"><span class="n">${hard}</span><span class="l">hard</span></div>
+    `;
+  }
+
+  function renderList(){
+    const list = filteredEntries();
+    if(entries.length === 0){
+      listPane.innerHTML = `<div class="list-empty">No problems logged yet. Add your first solve with "+ New entry".</div>`;
+      return;
+    }
+    if(list.length === 0){
+      listPane.innerHTML = `<div class="list-empty">Nothing matches that search or filter.</div>`;
+      return;
+    }
+    listPane.innerHTML = list.map((e, i) => `
+      <div class="entry-row ${difficultyClass(e.difficulty)} ${e.id===selectedId ? 'selected':''}" data-id="${e.id}">
+        <span class="num">${String(i+1).padStart(2,'0')}</span>
+        <div class="meta">
+          <p class="title">${escapeHtml(e.title || 'Untitled')}</p>
+          <div class="tags">
+            <span class="diff-tag ${difficultyClass(e.difficulty)}">${escapeHtml(e.difficulty||'—')}</span>
+            ${(e.types||[]).slice(0,3).map(t=>`<span>${escapeHtml(t)}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    listPane.querySelectorAll('.entry-row').forEach(row=>{
+      row.addEventListener('click', ()=>{
+        selectedId = row.dataset.id;
+        mode = 'detail';
+        render();
+      });
+    });
+  }
+
+  function renderDetailEmpty(){
+    detailPane.innerHTML = `
+      <div class="detail-empty">
+        <div class="big">Nothing selected</div>
+        <p>Pick a problem from the list on the left, or start a new entry to log your latest solve.</p>
+      </div>
+    `;
+  }
+
+  function renderDetail(entry){
+    const examplesHtml = (entry.examples||[]).map((ex, i) => `
+      <div class="example">
+        <div class="example-io">
+          <div class="io-cell"><div class="k">Input</div><div class="v">${escapeHtml(ex.input)}</div></div>
+          <div class="io-cell"><div class="k">Output</div><div class="v">${escapeHtml(ex.output)}</div></div>
+        </div>
+        ${ex.explanation ? `<div class="example-explain">${escapeHtml(ex.explanation)}</div>` : ''}
+      </div>
+    `).join('');
+
+    detailPane.innerHTML = `
+      <div class="detail-head">
+        <h2>${escapeHtml(entry.title || 'Untitled')}</h2>
+        <div class="detail-actions">
+          <button class="icon-btn" id="editBtn">Edit</button>
+          <button class="icon-btn danger" id="deleteBtn">Delete</button>
+        </div>
+      </div>
+      <div class="detail-tags">
+        <span class="diff-tag ${difficultyClass(entry.difficulty)}">${escapeHtml(entry.difficulty||'—')}</span>
+        ${(entry.types||[]).map(t=>`<span class="type-chip">${escapeHtml(t)}</span>`).join('')}
+      </div>
+
+      ${entry.prompt ? `
+        <p class="section-label">Prompt</p>
+        <div class="prompt-block">${escapeHtml(entry.prompt)}</div>
+      ` : ''}
+
+      ${examplesHtml ? `
+        <p class="section-label">Examples</p>
+        <div class="examples">${examplesHtml}</div>
+      ` : ''}
+
+      ${entry.code ? `
+        <p class="section-label">Solution ${entry.language ? '· ' + escapeHtml(entry.language) : ''}</p>
+        <div class="code-block">${escapeHtml(entry.code)}</div>
+      ` : ''}
+    `;
+
+    document.getElementById('editBtn').addEventListener('click', ()=>{
+      editingId = entry.id;
+      mode = 'form';
+      render();
+    });
+    document.getElementById('deleteBtn').addEventListener('click', async ()=>{
+      if(!confirm('Delete this entry? This can\\'t be undone.')) return;
+      entries = entries.filter(e=>e.id !== entry.id);
+      if(selectedId === entry.id) selectedId = null;
+      await persist();
+      render();
+    });
+  }
+
+  let formExamples = [];
+
+  function renderForm(existing){
+    formExamples = existing ? JSON.parse(JSON.stringify(existing.examples||[])) : [{input:'',output:'',explanation:''}];
+    if(formExamples.length === 0) formExamples = [{input:'',output:'',explanation:''}];
+
+    detailPane.innerHTML = `
+      <div class="detail-head">
+        <h2>${existing ? 'Edit entry' : 'New entry'}</h2>
+      </div>
+      <div class="form" id="entryForm">
+        <div class="field">
+          <label>Problem title</label>
+          <input type="text" id="f_title" value="${existing ? escapeHtml(existing.title) : ''}" placeholder="e.g. Two Sum">
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>Difficulty</label>
+            <select id="f_difficulty">
+              <option value="Easy" ${existing && existing.difficulty==='Easy' ? 'selected':''}>Easy</option>
+              <option value="Medium" ${existing && existing.difficulty==='Medium' ? 'selected':''}>Medium</option>
+              <option value="Hard" ${existing && existing.difficulty==='Hard' ? 'selected':''}>Hard</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Question type / topics (comma separated)</label>
+            <input type="text" id="f_types" value="${existing ? escapeHtml((existing.types||[]).join(', ')) : ''}" placeholder="Array, Hash Map, Two Pointers">
+          </div>
+        </div>
+        <div class="field">
+          <label>Prompt</label>
+          <textarea id="f_prompt" rows="5" placeholder="Paste or summarize the problem statement…">${existing ? escapeHtml(existing.prompt) : ''}</textarea>
+        </div>
+
+        <div class="field">
+          <label>Examples</label>
+          <div id="examplesEdit" style="display:flex;flex-direction:column;gap:10px;"></div>
+          <button type="button" class="add-ex-btn" id="addExBtn" style="margin-top:10px;">+ Add example</button>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label>Language</label>
+            <input type="text" id="f_language" value="${existing ? escapeHtml(existing.language||'') : ''}" placeholder="Python, JavaScript, C++…">
+          </div>
+        </div>
+        <div class="field">
+          <label>Your code</label>
+          <textarea id="f_code" rows="10" placeholder="def twoSum(nums, target):\\n    ...">${existing ? escapeHtml(existing.code) : ''}</textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="save-btn" id="saveBtn">Save entry</button>
+          <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
+        </div>
+      </div>
+    `;
+
+    renderExampleRows();
+
+    document.getElementById('addExBtn').addEventListener('click', ()=>{
+      formExamples.push({input:'',output:'',explanation:''});
+      renderExampleRows();
+    });
+
+    document.getElementById('saveBtn').addEventListener('click', async ()=>{
+      const title = document.getElementById('f_title').value.trim();
+      if(!title){ alert('Give the problem a title first.'); return; }
+      const difficulty = document.getElementById('f_difficulty').value;
+      const types = document.getElementById('f_types').value.split(',').map(t=>t.trim()).filter(Boolean);
+      const prompt = document.getElementById('f_prompt').value;
+      const language = document.getElementById('f_language').value.trim();
+      const code = document.getElementById('f_code').value;
+      const cleanExamples = formExamples
+        .map(ex => ({
+          input: (document.querySelector(`[data-ex-field="input"][data-ex-index="${formExamples.indexOf(ex)}"]`)||{}).value ?? ex.input,
+          output: ex.output, explanation: ex.explanation
+        }));
+
+      const finalExamples = collectExampleValues().filter(ex => ex.input || ex.output || ex.explanation);
+
+      if(existing){
+        const idx = entries.findIndex(e=>e.id===existing.id);
+        entries[idx] = {...existing, title, difficulty, types, prompt, language, code, examples: finalExamples};
+        selectedId = existing.id;
+      } else {
+        const newEntry = {
+          id: 'entry_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
+          title, difficulty, types, prompt, language, code, examples: finalExamples,
+          createdAt: Date.now()
+        };
+        entries.unshift(newEntry);
+        selectedId = newEntry.id;
+      }
+      await persist();
+      mode = 'detail';
+      editingId = null;
+      render();
+    });
+
+    document.getElementById('cancelBtn').addEventListener('click', ()=>{
+      mode = 'detail';
+      editingId = null;
+      render();
+    });
+  }
+
+  function collectExampleValues(){
+    const rows = document.querySelectorAll('.example-edit');
+    return Array.from(rows).map(row => ({
+      input: row.querySelector('[data-field="input"]').value,
+      output: row.querySelector('[data-field="output"]').value,
+      explanation: row.querySelector('[data-field="explanation"]').value
+    }));
+  }
+
+  function renderExampleRows(){
+    const wrap = document.getElementById('examplesEdit');
+    wrap.innerHTML = formExamples.map((ex, i) => `
+      <div class="example-edit" data-index="${i}">
+        ${formExamples.length > 1 ? `<button type="button" class="remove-ex" data-remove="${i}">remove</button>` : ''}
+        <div class="row2">
+          <div class="field" style="margin-bottom:0;">
+            <label>Input</label>
+            <input type="text" data-field="input" value="${escapeHtml(ex.input)}" placeholder="nums = [2,7,11,15], target = 9">
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label>Output</label>
+            <input type="text" data-field="output" value="${escapeHtml(ex.output)}" placeholder="[0,1]">
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Explanation (optional)</label>
+          <input type="text" data-field="explanation" value="${escapeHtml(ex.explanation||'')}" placeholder="nums[0] + nums[1] == 9">
+        </div>
+      </div>
+    `).join('');
+
+    wrap.querySelectorAll('[data-remove]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        // capture current values before removing
+        formExamples = collectExampleValues();
+        formExamples.splice(parseInt(btn.dataset.remove), 1);
+        renderExampleRows();
+      });
+    });
+
+    // keep formExamples in sync as the user types, so add/remove doesn't lose data
+    wrap.querySelectorAll('input').forEach(inp=>{
+      inp.addEventListener('input', ()=>{
+        formExamples = collectExampleValues();
+      });
+    });
+  }
+
+  function render(){
+    if(!loaded) return;
+    renderStats();
+    renderList();
+
+    if(mode === 'form'){
+      const existing = editingId ? entries.find(e=>e.id===editingId) : null;
+      renderForm(existing);
+      return;
+    }
+
+    const selected = entries.find(e=>e.id===selectedId);
+    if(selected){
+      renderDetail(selected);
+    } else {
+      renderDetailEmpty();
+    }
+  }
+
+  searchInput.addEventListener('input', (e)=>{
+    searchTerm = e.target.value;
+    renderList();
+  });
+
+  diffFilters.querySelectorAll('.pill').forEach(pill=>{
+    pill.addEventListener('click', ()=>{
+      diffFilters.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+      pill.classList.add('active');
+      filterDiff = pill.dataset.diff;
+      renderList();
+    });
+  });
+
+  newBtn.addEventListener('click', ()=>{
+    editingId = null;
+    mode = 'form';
+    render();
+  });
+
+  resetBtn.addEventListener('click', async ()=>{
+    if(!confirm('Clear every entry in your solve log? This can\\'t be undone.')) return;
+    entries = [];
+    selectedId = null;
+    await persist();
+    render();
+  });
+
+  loadEntries();
+})();
+</script>
+</body>
+</html>
