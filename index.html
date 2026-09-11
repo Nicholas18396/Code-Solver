@@ -429,26 +429,37 @@
       <p>A running record of problems cracked — the prompt, the approach, and the code that got there.</p>
     </div>
     <div class="stats" id="stats">
-      <div class="stat"><span class="n">0</span><span class="l">solved</span></div>
+      <div class="stat"><span class="n">1</span><span class="l">solved</span></div>
       <div class="stat easy"><span class="n">0</span><span class="l">easy</span></div>
-      <div class="stat medium"><span class="n">0</span><span class="l">medium</span></div>
+      <div class="stat medium"><span class="n">1</span><span class="l">medium</span></div>
       <div class="stat hard"><span class="n">0</span><span class="l">hard</span></div>
     </div>
   </header>
 
   <div class="toolbar">
-    <input class="search" id="searchInput" type="text" placeholder="Search by title or topic…" fdprocessedid="dlehb">
+    <input class="search" id="searchInput" type="text" placeholder="Search by title or topic…" fdprocessedid="umpab9">
     <div class="pill-group" id="diffFilters">
-      <button class="pill active" data-diff="all" fdprocessedid="l8mst">All</button>
-      <button class="pill easy" data-diff="Easy" fdprocessedid="7ttim">Easy</button>
-      <button class="pill medium" data-diff="Medium" fdprocessedid="mtcw2b">Medium</button>
-      <button class="pill hard" data-diff="Hard" fdprocessedid="uzfki1">Hard</button>
+      <button class="pill active" data-diff="all" fdprocessedid="2d8coa">All</button>
+      <button class="pill easy" data-diff="Easy" fdprocessedid="i1x04p">Easy</button>
+      <button class="pill medium" data-diff="Medium" fdprocessedid="kmtwtx">Medium</button>
+      <button class="pill hard" data-diff="Hard" fdprocessedid="zadaq">Hard</button>
     </div>
-    <button class="new-btn" id="newBtn" fdprocessedid="dfdebc">+ New entry</button>
+    <button class="new-btn" id="newBtn" fdprocessedid="e0bmgg">+ New entry</button>
   </div>
 
   <div class="board">
-    <div class="list-pane" id="listPane"><div class="list-empty">No problems logged yet. Add your first solve with "+ New entry".</div></div>
+    <div class="list-pane" id="listPane">
+      <div class="entry-row medium selected" data-id="entry_1789166449348_x85uz">
+        <span class="num">01</span>
+        <div class="meta">
+          <p class="title">Data Compression of Strings</p>
+          <div class="tags">
+            <span class="diff-tag medium">Medium</span>
+            <span>Strings</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="detail-pane" id="detailPane">
       <div class="detail-head">
         <h2>New entry</h2>
@@ -456,12 +467,12 @@
       <div class="form" id="entryForm">
         <div class="field">
           <label>Problem title</label>
-          <input type="text" id="f_title" value="" placeholder="e.g. Two Sum" fdprocessedid="6ee75r">
+          <input type="text" id="f_title" value="" placeholder="e.g. Two Sum" fdprocessedid="bkmnow">
         </div>
         <div class="row2">
           <div class="field">
             <label>Difficulty</label>
-            <select id="f_difficulty" fdprocessedid="m3e0bc">
+            <select id="f_difficulty" fdprocessedid="7f6xml8">
               <option value="Easy">Easy</option>
               <option value="Medium">Medium</option>
               <option value="Hard">Hard</option>
@@ -469,7 +480,7 @@
           </div>
           <div class="field">
             <label>Question type / topics (comma separated)</label>
-            <input type="text" id="f_types" value="" placeholder="Array, Hash Map, Two Pointers" fdprocessedid="uruwhp">
+            <input type="text" id="f_types" value="" placeholder="Array, Hash Map, Two Pointers" fdprocessedid="koxz4q">
           </div>
         </div>
         <div class="field">
@@ -481,48 +492,48 @@
           <label>Examples</label>
           <div id="examplesEdit" style="display:flex;flex-direction:column;gap:10px;">
       <div class="example-edit" data-index="0">
-        <button type="button" class="remove-ex" data-remove="0" fdprocessedid="lx5v5">remove</button>
+        <button type="button" class="remove-ex" data-remove="0" fdprocessedid="b0w24g">remove</button>
         <div class="row2">
           <div class="field" style="margin-bottom:0;">
             <label>Input</label>
-            <input type="text" data-field="input" value="" placeholder="nums = [2,7,11,15], target = 9" fdprocessedid="6ri4rc">
+            <input type="text" data-field="input" value="out_list = ['a3bbc5a4bc3d', 'aa', 'bccdab6a5'], target = 5" placeholder="nums = [2,7,11,15], target = 9" fdprocessedid="9mpmr9">
           </div>
           <div class="field" style="margin-bottom:0;">
             <label>Output</label>
-            <input type="text" data-field="output" value="" placeholder="[0,1]" fdprocessedid="bl0qwa">
+            <input type="text" data-field="output" value="expanded_strings = ['aaabbcccccaaaabcccd', 'aa', 'bccdabbbbbbaaaaa']" placeholder="[0,1]" fdprocessedid="hxk4oj">
           </div>
         </div>
         <div class="field" style="margin-bottom:0;">
           <label>Explanation (optional)</label>
-          <input type="text" data-field="explanation" value="" placeholder="nums[0] + nums[1] == 9" fdprocessedid="hkxk87">
+          <input type="text" data-field="explanation" value="" placeholder="nums[0] + nums[1] == 9" fdprocessedid="fwe9a">
         </div>
       </div>
     
       <div class="example-edit" data-index="1">
-        <button type="button" class="remove-ex" data-remove="1" fdprocessedid="hw9vik">remove</button>
+        <button type="button" class="remove-ex" data-remove="1" fdprocessedid="ue3dwg">remove</button>
         <div class="row2">
           <div class="field" style="margin-bottom:0;">
             <label>Input</label>
-            <input type="text" data-field="input" value="" placeholder="nums = [2,7,11,15], target = 9" fdprocessedid="673dwi">
+            <input type="text" data-field="input" value="" placeholder="nums = [2,7,11,15], target = 9" fdprocessedid="ngvu3g">
           </div>
           <div class="field" style="margin-bottom:0;">
             <label>Output</label>
-            <input type="text" data-field="output" value="" placeholder="[0,1]" fdprocessedid="aa26g">
+            <input type="text" data-field="output" value="" placeholder="[0,1]" fdprocessedid="lonque">
           </div>
         </div>
         <div class="field" style="margin-bottom:0;">
           <label>Explanation (optional)</label>
-          <input type="text" data-field="explanation" value="" placeholder="nums[0] + nums[1] == 9" fdprocessedid="3ree9g">
+          <input type="text" data-field="explanation" value="" placeholder="nums[0] + nums[1] == 9" fdprocessedid="b2zgzn">
         </div>
       </div>
     </div>
-          <button type="button" class="add-ex-btn" id="addExBtn" style="margin-top:10px;" fdprocessedid="w4ri1w">+ Add example</button>
+          <button type="button" class="add-ex-btn" id="addExBtn" style="margin-top:10px;" fdprocessedid="tqj01o">+ Add example</button>
         </div>
 
         <div class="row2">
           <div class="field">
             <label>Language</label>
-            <input type="text" id="f_language" value="" placeholder="Python, JavaScript, C++…" fdprocessedid="54rf27">
+            <input type="text" id="f_language" value="" placeholder="Python, JavaScript, C++…" fdprocessedid="8a3d1r">
           </div>
         </div>
         <div class="field">
@@ -531,14 +542,14 @@
         </div>
 
         <div class="form-actions">
-          <button type="button" class="save-btn" id="saveBtn" fdprocessedid="klwmi">Save entry</button>
-          <button type="button" class="cancel-btn" id="cancelBtn" fdprocessedid="mj0h2q">Cancel</button>
+          <button type="button" class="save-btn" id="saveBtn" fdprocessedid="pceyo">Save entry</button>
+          <button type="button" class="cancel-btn" id="cancelBtn" fdprocessedid="vemv9m">Cancel</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="footnote">Saved locally in this browser · <button id="downloadBtn" fdprocessedid="10ofbk">download index.html</button> · <button id="resetBtn" fdprocessedid="tccspp">clear all entries</button></div>
+  <div class="footnote">Saved locally in this browser · <button id="downloadBtn" fdprocessedid="k9d68s">download index.html</button> · <button id="resetBtn" fdprocessedid="jkhvrp">clear all entries</button></div>
   <p class="footnote" style="margin-top:10px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);text-align:center;line-height:1.6;">
     Every save downloads a fresh <code>index.html</code> with your data baked in.
     Most browsers won't overwrite the old copy automatically — they'll save it as
@@ -548,7 +559,7 @@
     replace it directly.
   </p>
 
-<script type="application/json" id="seedData">[{"id":"entry_1789166449348_x85uz","title":"Data Compression of Strings","difficulty":"Medium","types":["Strings"],"prompt":"Compress a list of strings down into a simplified format. Compress when the letter is seen >= target times consecutively.","language":"","code":"def compress_strings(array, target):\n    out_list = []\n    for i in range(len(array)):\n        string = array[i]\n        prev_let = \"\"\n        iter_list = \"\"\n        counter = 0\n        for j in range(len(string)):\n            curr_let = string[j]\n            if curr_let == prev_let:\n                counter+=1\n            else:\n                if counter < 3:\n                    for k in range(counter):\n                        iter_list += prev_let\n                else:\n                    iter_list += prev_let + str(counter)\n                counter = 1\n            prev_let = curr_let\n            #print(iter_list)\n            #print(curr_let)\n        if counter < target:\n            for k in range(counter):\n                iter_list += prev_let\n        else:\n            iter_list += prev_let + str(counter)\n        out_list.append(iter_list)\n\n    return out_list","examples":[{"input":"array = ['aaaaaaaaaaaaaaaaaaabbcccccccccccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'], target = 3","output":"out_string = ['a19bbc27a30']","explanation":""},{"input":"Input array = ['aaabbcccccaaaabcccd', 'aa', 'bccdabbbbbbaaaaa'], target = 3","output":"out_string = ['a3bbc5a4bc3d', 'aa', 'bccdab6a5']","explanation":""}],"createdAt":1789166449348}]</script>
+<script type="application/json" id="seedData">[{"id":"entry_1789166851864_k4nu6","title":"Data Expansion of Strings","difficulty":"Medium","types":["Strings"],"prompt":"Expand the given strings out. Each time you have a number following a letter, expanded the letter out that many times in total consecutively.","language":"","code":"def expand_strings(array):\n    out_list = []\n    for string in array:\n        iter_string = \"\"\n        prev_let = \"\"\n        count_str = \"\"\n        for let in string:\n            if let.isalpha():\n                iter_string += let\n                count_str = \"\"\n            else:\n                if prev_let.isalpha():\n                    for i in range(int(let)-1):\n                        iter_string += prev_let\n                    count_str += let\n                else:\n                    count_str += let\n                    num = int(count_str) - int(count_str[0:len(count_str)-1])\n                    for i in range(num):\n                        iter_string += iter_string[-1]\n            prev_let = let\n        out_list.append(iter_string)\n    return out_list","examples":[{"input":"compressed_strings = ['a3bbc5a4bc3d', 'aa', 'bccdab6a5']","output":"expanded_strings = ['aaabbcccccaaaabcccd', 'aa', 'bccdabbbbbbaaaaa']","explanation":""},{"input":"compressed_strings  = ['a101bb']","output":"expanded_strings  = ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb']","explanation":""}],"createdAt":1789166851864},{"id":"entry_1789166449348_x85uz","title":"Data Compression of Strings","difficulty":"Medium","types":["Strings"],"prompt":"Compress a list of strings down into a simplified format. Compress when the letter is seen >= target times consecutively.","language":"","code":"def compress_strings(array, target):\n    out_list = []\n    for i in range(len(array)):\n        string = array[i]\n        prev_let = \"\"\n        iter_list = \"\"\n        counter = 0\n        for j in range(len(string)):\n            curr_let = string[j]\n            if curr_let == prev_let:\n                counter+=1\n            else:\n                if counter < 3:\n                    for k in range(counter):\n                        iter_list += prev_let\n                else:\n                    iter_list += prev_let + str(counter)\n                counter = 1\n            prev_let = curr_let\n            #print(iter_list)\n            #print(curr_let)\n        if counter < target:\n            for k in range(counter):\n                iter_list += prev_let\n        else:\n            iter_list += prev_let + str(counter)\n        out_list.append(iter_list)\n\n    return out_list","examples":[{"input":"array = ['aaaaaaaaaaaaaaaaaaabbcccccccccccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'], target = 3","output":"out_string = ['a19bbc27a30']","explanation":""},{"input":"Input array = ['aaabbcccccaaaabcccd', 'aa', 'bccdabbbbbbaaaaa'], target = 3","output":"out_string = ['a3bbc5a4bc3d', 'aa', 'bccdab6a5']","explanation":""}],"createdAt":1789166449348}]</script>
 <script>
 (function(){
   const STORAGE_KEY = 'leetcode-entries';
