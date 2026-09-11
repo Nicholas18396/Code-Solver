@@ -448,9 +448,17 @@
     <div class="detail-pane" id="detailPane"></div>
   </div>
 
-  <div class="footnote">Saved locally in this browser · <button id="resetBtn">clear all entries</button></div>
-</div>
+  <div class="footnote">Saved locally in this browser · <button id="downloadBtn">download index.html</button> · <button id="resetBtn">clear all entries</button></div>
+  <p class="footnote" style="margin-top:10px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);text-align:center;line-height:1.6;">
+    Every save downloads a fresh <code>index.html</code> with your data baked in.
+    Most browsers won't overwrite the old copy automatically — they'll save it as
+    <code>index (1).html</code> instead. To keep one clean file: either move the new
+    download over your old <code>index.html</code> each time, or turn on
+    "Ask where to save each file" in your browser's download settings so you can
+    replace it directly.
+  </p>
 
+<script type="application/json" id="seedData">[]</script>
 <script>
 (function(){
   const STORAGE_KEY = 'leetcode-entries';
@@ -476,23 +484,54 @@
 
   async function loadEntries(){
     detailPane.innerHTML = '<div class="loading">Loading your log…</div>';
+    let seedEntries = [];
     try{
-      const raw = localStorage.getItem(STORAGE_KEY);
-      entries = raw ? JSON.parse(raw) : [];
+      const seedEl = document.getElementById('seedData');
+      seedEntries = JSON.parse(seedEl.textContent || '[]');
     }catch(e){
-      console.error('Storage error', e);
-      entries = [];
+      seedEntries = [];
+    }
+    if(Array.isArray(seedEntries) && seedEntries.length){
+      entries = seedEntries;
+    } else {
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        entries = raw ? JSON.parse(raw) : [];
+      }catch(e){
+        console.error('Storage error', e);
+        entries = [];
+      }
     }
     loaded = true;
     render();
   }
 
-  async function persist(){
+  function persist(){
     try{
       localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
     }catch(e){
       console.error('Storage error', e);
-      alert('Could not save — your browser storage may be full or disabled for local files.');
+    }
+    downloadSnapshot();
+  }
+
+  function downloadSnapshot(){
+    try{
+      const seedEl = document.getElementById('seedData');
+      seedEl.textContent = JSON.stringify(entries);
+      const htmlString = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const blob = new Blob([htmlString], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'index.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(()=>URL.revokeObjectURL(url), 1500);
+    }catch(e){
+      console.error('Download failed', e);
+      alert('Could not download the file automatically. Your entries are still saved in this browser.');
     }
   }
 
@@ -613,7 +652,7 @@
       if(!confirm("Delete this entry? This can't be undone.")) return;
       entries = entries.filter(e=>e.id !== entry.id);
       if(selectedId === entry.id) selectedId = null;
-      await persist();
+      persist();
       render();
     });
   }
@@ -712,7 +751,7 @@
         entries.unshift(newEntry);
         selectedId = newEntry.id;
       }
-      await persist();
+      persist();
       mode = 'detail';
       editingId = null;
       render();
@@ -812,12 +851,16 @@
     render();
   });
 
-  resetBtn.addEventListener('click', async ()=>{
+  resetBtn.addEventListener('click', ()=>{
     if(!confirm("Clear every entry in your solve log? This can't be undone.")) return;
     entries = [];
     selectedId = null;
-    await persist();
+    persist();
     render();
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', ()=>{
+    downloadSnapshot();
   });
 
   loadEntries();
