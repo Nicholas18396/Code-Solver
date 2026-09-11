@@ -448,7 +448,7 @@
     <div class="detail-pane" id="detailPane"></div>
   </div>
 
-  <div class="footnote">Saved to this browser's Claude storage · <button id="resetBtn">clear all entries</button></div>
+  <div class="footnote">Saved locally in this browser · <button id="resetBtn">clear all entries</button></div>
 </div>
 
 <script>
@@ -477,9 +477,10 @@
   async function loadEntries(){
     detailPane.innerHTML = '<div class="loading">Loading your log…</div>';
     try{
-      const res = await window.storage.get(STORAGE_KEY, false);
-      entries = res && res.value ? JSON.parse(res.value) : [];
+      const raw = localStorage.getItem(STORAGE_KEY);
+      entries = raw ? JSON.parse(raw) : [];
     }catch(e){
+      console.error('Storage error', e);
       entries = [];
     }
     loaded = true;
@@ -488,10 +489,10 @@
 
   async function persist(){
     try{
-      const result = await window.storage.set(STORAGE_KEY, JSON.stringify(entries), false);
-      if(!result) console.error('Storage set returned no result');
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
     }catch(e){
       console.error('Storage error', e);
+      alert('Could not save — your browser storage may be full or disabled for local files.');
     }
   }
 
