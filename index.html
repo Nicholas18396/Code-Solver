@@ -609,7 +609,7 @@
       render();
     });
     document.getElementById('deleteBtn').addEventListener('click', async ()=>{
-      if(!confirm('Delete this entry? This can\\'t be undone.')) return;
+      if(!confirm("Delete this entry? This can't be undone.")) return;
       entries = entries.filter(e=>e.id !== entry.id);
       if(selectedId === entry.id) selectedId = null;
       await persist();
@@ -812,7 +812,7 @@
   });
 
   resetBtn.addEventListener('click', async ()=>{
-    if(!confirm('Clear every entry in your solve log? This can\\'t be undone.')) return;
+    if(!confirm("Clear every entry in your solve log? This can't be undone.")) return;
     entries = [];
     selectedId = null;
     await persist();
