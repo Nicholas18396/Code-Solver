@@ -430,8 +430,8 @@
     </div>
     <div class="stats" id="stats">
       <div class="stat"><span class="n">5</span><span class="l">solved</span></div>
-      <div class="stat easy"><span class="n">1</span><span class="l">easy</span></div>
-      <div class="stat medium"><span class="n">4</span><span class="l">medium</span></div>
+      <div class="stat easy"><span class="n">0</span><span class="l">easy</span></div>
+      <div class="stat medium"><span class="n">5</span><span class="l">medium</span></div>
       <div class="stat hard"><span class="n">0</span><span class="l">hard</span></div>
     </div>
   </header>
@@ -449,12 +449,12 @@
 
   <div class="board">
     <div class="list-pane" id="listPane">
-      <div class="entry-row easy selected" data-id="entry_1789179766111_4q0ie">
+      <div class="entry-row medium " data-id="entry_1789179766111_4q0ie">
         <span class="num">01</span>
         <div class="meta">
           <p class="title">18. 4Sum</p>
           <div class="tags">
-            <span class="diff-tag easy">Easy</span>
+            <span class="diff-tag medium">Medium</span>
             <span>Array</span><span>Two Pointers</span><span>Sorting</span>
           </div>
         </div>
@@ -506,121 +506,88 @@
     </div>
     <div class="detail-pane" id="detailPane">
       <div class="detail-head">
-        <h2>Edit entry</h2>
+        <h2>New entry</h2>
       </div>
       <div class="form" id="entryForm">
         <div class="field">
           <label>Problem title</label>
-          <input type="text" id="f_title" value="18. 4Sum" placeholder="e.g. Two Sum" fdprocessedid="vt0l6">
+          <input type="text" id="f_title" value="" placeholder="e.g. Two Sum" fdprocessedid="ha79">
         </div>
         <div class="row2">
           <div class="field">
             <label>Difficulty</label>
-            <select id="f_difficulty" fdprocessedid="1642jt">
-              <option value="Easy" selected="">Easy</option>
+            <select id="f_difficulty" fdprocessedid="tklppc">
+              <option value="Easy">Easy</option>
               <option value="Medium">Medium</option>
               <option value="Hard">Hard</option>
             </select>
           </div>
           <div class="field">
             <label>Question type / topics (comma separated)</label>
-            <input type="text" id="f_types" value="Array, Two Pointers, Sorting" placeholder="Array, Hash Map, Two Pointers" fdprocessedid="dzbks4">
+            <input type="text" id="f_types" value="" placeholder="Array, Hash Map, Two Pointers" fdprocessedid="b2didd">
           </div>
         </div>
         <div class="field">
           <label>Prompt</label>
-          <textarea id="f_prompt" rows="5" placeholder="Paste or summarize the problem statement…">Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:  0 &lt;= a, b, c, d &lt; n a, b, c, and d are distinct. nums[a] + nums[b] + nums[c] + nums[d] == target You may return the answer in any order.</textarea>
+          <textarea id="f_prompt" rows="5" placeholder="Paste or summarize the problem statement…"></textarea>
         </div>
 
         <div class="field">
           <label>Examples</label>
           <div id="examplesEdit" style="display:flex;flex-direction:column;gap:10px;">
       <div class="example-edit" data-index="0">
-        <button type="button" class="remove-ex" data-remove="0" fdprocessedid="t6mh3">remove</button>
+        <button type="button" class="remove-ex" data-remove="0" fdprocessedid="yqw0b">remove</button>
         <div class="row2">
           <div class="field" style="margin-bottom:0;">
             <label>Input</label>
-            <input type="text" data-field="input" value="nums = [1,0,-1,0,-2,2], target = 0" placeholder="nums = [2,7,11,15], target = 9" fdprocessedid="xx31r">
+            <input type="text" data-field="input" value="nums = [2,3,1,1,4]" placeholder="nums = [2,7,11,15], target = 9" fdprocessedid="cv85xd">
           </div>
           <div class="field" style="margin-bottom:0;">
             <label>Output</label>
-            <input type="text" data-field="output" value="[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]" placeholder="[0,1]" fdprocessedid="ez81i">
+            <input type="text" data-field="output" value="True" placeholder="[0,1]" fdprocessedid="5p4lil">
           </div>
         </div>
         <div class="field" style="margin-bottom:0;">
           <label>Explanation (optional)</label>
-          <input type="text" data-field="explanation" value="" placeholder="nums[0] + nums[1] == 9" fdprocessedid="r74kyp">
+          <input type="text" data-field="explanation" value="Jump 1 step from index 0 to 1, then 3 steps to the last index." placeholder="nums[0] + nums[1] == 9" fdprocessedid="gw7ox">
         </div>
       </div>
     
       <div class="example-edit" data-index="1">
-        <button type="button" class="remove-ex" data-remove="1" fdprocessedid="waz1b8">remove</button>
+        <button type="button" class="remove-ex" data-remove="1" fdprocessedid="r0d9tl">remove</button>
         <div class="row2">
           <div class="field" style="margin-bottom:0;">
             <label>Input</label>
-            <input type="text" data-field="input" value="nums = [2,2,2,2,2], target = 8" placeholder="nums = [2,7,11,15], target = 9" fdprocessedid="958i9f">
+            <input type="text" data-field="input" value="" placeholder="nums = [2,7,11,15], target = 9" fdprocessedid="v3w32">
           </div>
           <div class="field" style="margin-bottom:0;">
             <label>Output</label>
-            <input type="text" data-field="output" value="[[2,2,2,2]]" placeholder="[0,1]" fdprocessedid="wyg7dr">
+            <input type="text" data-field="output" value="" placeholder="[0,1]" fdprocessedid="xvq3ws">
           </div>
         </div>
         <div class="field" style="margin-bottom:0;">
           <label>Explanation (optional)</label>
-          <input type="text" data-field="explanation" value="" placeholder="nums[0] + nums[1] == 9" fdprocessedid="b76c3c">
+          <input type="text" data-field="explanation" value="" placeholder="nums[0] + nums[1] == 9" fdprocessedid="16rdqb">
         </div>
       </div>
     </div>
-          <button type="button" class="add-ex-btn" id="addExBtn" style="margin-top:10px;" fdprocessedid="q6djrr">+ Add example</button>
+          <button type="button" class="add-ex-btn" id="addExBtn" style="margin-top:10px;" fdprocessedid="b5ro7h">+ Add example</button>
         </div>
 
         <div class="row2">
           <div class="field">
             <label>Language</label>
-            <input type="text" id="f_language" value="Python" placeholder="Python, JavaScript, C++…" fdprocessedid="amxe89">
+            <input type="text" id="f_language" value="" placeholder="Python, JavaScript, C++…" fdprocessedid="my9o8">
           </div>
         </div>
         <div class="field">
           <label>Your code</label>
-          <textarea id="f_code" rows="10" placeholder="def twoSum(nums, target):\n    ...">class Solution(object):
-    def fourSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[List[int]]
-        """
-
-        #O(nlogn)
-        nums.sort()
-        all_zero_sums = []
-        adict = {}
-
-        #O(n^2)
-        for i in range(len(nums)-3):
-            for j in range(i+1, len(nums)-2):
-                left = j+1
-                right = len(nums) - 1
-                while left &lt; right:
-                    appended_nums = [nums[i], nums[j], nums[left], nums[right]]
-                    summ = nums[i] + nums[j] + nums[left] + nums[right]
-                    if summ == target and (nums[i], nums[j], nums[left], nums[right]) not in adict:
-                        all_zero_sums.append(appended_nums)
-                        adict[(nums[i], nums[j], nums[left], nums[right])] = 0
-                
-                    if summ &lt; target:
-                        left += 1
-                    elif summ &gt; target:
-                        right -= 1
-                    else:
-                        left += 1
-        return all_zero_sums
-
-        #total runtime O(nlogn) + O(n^2) dominated by O(n^2)</textarea>
+          <textarea id="f_code" rows="10" placeholder="def twoSum(nums, target):\n    ..."></textarea>
         </div>
 
         <div class="form-actions">
-          <button type="button" class="save-btn" id="saveBtn" fdprocessedid="rkv988">Save entry</button>
-          <button type="button" class="cancel-btn" id="cancelBtn" fdprocessedid="qfk2c">Cancel</button>
+          <button type="button" class="save-btn" id="saveBtn" fdprocessedid="5bt7o7">Save entry</button>
+          <button type="button" class="cancel-btn" id="cancelBtn" fdprocessedid="jn3rk">Cancel</button>
         </div>
       </div>
     </div>
@@ -636,7 +603,7 @@
     replace it directly.
   </p>
 
-<script type="application/json" id="seedData">[{"id":"entry_1789179766111_4q0ie","title":"18. 4Sum","difficulty":"Medium","types":["Array","Two Pointers","Sorting"],"prompt":"Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:  0 <= a, b, c, d < n a, b, c, and d are distinct. nums[a] + nums[b] + nums[c] + nums[d] == target You may return the answer in any order.","language":"Python","code":"class Solution(object):\n    def fourSum(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: int\n        :rtype: List[List[int]]\n        \"\"\"\n\n        #O(nlogn)\n        nums.sort()\n        all_zero_sums = []\n        adict = {}\n\n        #O(n^2)\n        for i in range(len(nums)-3):\n            for j in range(i+1, len(nums)-2):\n                left = j+1\n                right = len(nums) - 1\n                while left < right:\n                    appended_nums = [nums[i], nums[j], nums[left], nums[right]]\n                    summ = nums[i] + nums[j] + nums[left] + nums[right]\n                    if summ == target and (nums[i], nums[j], nums[left], nums[right]) not in adict:\n                        all_zero_sums.append(appended_nums)\n                        adict[(nums[i], nums[j], nums[left], nums[right])] = 0\n                \n                    if summ < target:\n                        left += 1\n                    elif summ > target:\n                        right -= 1\n                    else:\n                        left += 1\n        return all_zero_sums\n\n        #total runtime O(nlogn) + O(n^2) dominated by O(n^2)","examples":[{"input":"nums = [1,0,-1,0,-2,2], target = 0","output":"[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]","explanation":""},{"input":"nums = [2,2,2,2,2], target = 8","output":"[[2,2,2,2]]","explanation":""}],"createdAt":1789179766111},{"id":"entry_1789179138967_krq9o","title":"15. 3Sum","difficulty":"Medium","types":["Array","Two Pointers","Sorting"],"prompt":"Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.\n\nNotice that the solution set must not contain duplicate triplets.","language":"Python","code":"class Solution(object):\n    def threeSum(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[List[int]]\n        \"\"\"\n\n        #O(nlogn)\n        nums.sort()\n        all_zero_sums = []\n        adict = {}\n\n        #O(n^2)\n        for i in range(len(nums)-2):\n            left = i+1\n            right = len(nums) - 1\n            while left < right:\n                appended_nums = [nums[i], nums[left], nums[right]]\n                summ = nums[i] + nums[left] + nums[right]\n                if summ == 0 and (nums[i], nums[left], nums[right]) not in adict:\n                    all_zero_sums.append(appended_nums)\n                    adict[(nums[i], nums[left], nums[right])] = 0\n            \n                if summ < 0:\n                    left += 1\n                elif summ > 0:\n                    right -= 1\n                else:\n                    left += 1\n        return all_zero_sums\n\n        #total runtime O(nlogn) + O(n^2) dominated by O(n^2)\n","examples":[{"input":"nums = [-1,0,1,2,-1,-4]","output":"[[-1,-1,2],[-1,0,1]]","explanation":"nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0. nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0. nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0. The distinct triplets are [-1,0,1] and [-1,-1,2]. Notice that the order of the output and the order of the triplets does not matter."},{"input":"nums = [0,1,1]","output":"[]","explanation":"The only possible triplet does not sum up to 0."},{"input":"[0,0,0]","output":"[[0,0,0]]","explanation":"The only possible triplet sums up to 0."}],"createdAt":1789179138967},{"id":"entry_1789178895257_r6h8z","title":"16. 3Sum Closest","difficulty":"Medium","types":["Array","Two Pointer"],"prompt":"You are given an integer array nums of length n and an integer target.\n\nFind three integers at distinct indices in nums such that the sum is closest to target.\n\nReturn the sum of the three integers.\n\nYou may assume that each input would have exactly one solution.","language":"Python","code":"class Solution(object):\n    def threeSumClosest(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: int\n        :rtype: int\n        \"\"\"\n\n        closest_sum = nums[0] + nums[1] + nums[2]\n        nums.sort()\n        \n        for i in range(len(nums) - 2):\n            left = i+1\n            right = len(nums) - 1\n\n            while left < right:\n                curr = nums[i] + nums[left] + nums[right]\n                \n                if abs(target - curr) < abs(target - closest_sum):\n                    closest_sum = curr\n                \n                if curr < target:\n                    left+=1\n                elif curr > target:\n                    right-=1\n                else:\n                    return curr\n        return closest_sum","examples":[{"input":"nums = [-1,2,1,-4], target = 1","output":"2","explanation":"The sum that is closest to the target is 2. (-1 + 2 + 1 = 2)."},{"input":"nums = [0,0,0], target = 1","output":"0","explanation":"The sum that is closest to the target is 0. (0 + 0 + 0 = 0)."}],"createdAt":1789178895257},{"id":"entry_1789166851864_k4nu6","title":"Data Expansion of Strings","difficulty":"Medium","types":["Strings"],"prompt":"Expand the given strings out. Each time you have a number following a letter, expanded the letter out that many times in total consecutively.","language":"","code":"def expand_strings(array):\n    out_list = []\n    for string in array:\n        iter_string = \"\"\n        prev_let = \"\"\n        count_str = \"\"\n        for let in string:\n            if let.isalpha():\n                iter_string += let\n                count_str = \"\"\n            else:\n                if prev_let.isalpha():\n                    for i in range(int(let)-1):\n                        iter_string += prev_let\n                    count_str += let\n                else:\n                    count_str += let\n                    num = int(count_str) - int(count_str[0:len(count_str)-1])\n                    for i in range(num):\n                        iter_string += iter_string[-1]\n            prev_let = let\n        out_list.append(iter_string)\n    return out_list","examples":[{"input":"compressed_strings = ['a3bbc5a4bc3d', 'aa', 'bccdab6a5']","output":"expanded_strings = ['aaabbcccccaaaabcccd', 'aa', 'bccdabbbbbbaaaaa']","explanation":""},{"input":"compressed_strings  = ['a101bb']","output":"expanded_strings  = ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb']","explanation":""}],"createdAt":1789166851864},{"id":"entry_1789166449348_x85uz","title":"Data Compression of Strings","difficulty":"Medium","types":["Strings"],"prompt":"Compress a list of strings down into a simplified format. Compress when the letter is seen >= target times consecutively.","language":"","code":"def compress_strings(array, target):\n    out_list = []\n    for i in range(len(array)):\n        string = array[i]\n        prev_let = \"\"\n        iter_list = \"\"\n        counter = 0\n        for j in range(len(string)):\n            curr_let = string[j]\n            if curr_let == prev_let:\n                counter+=1\n            else:\n                if counter < 3:\n                    for k in range(counter):\n                        iter_list += prev_let\n                else:\n                    iter_list += prev_let + str(counter)\n                counter = 1\n            prev_let = curr_let\n            #print(iter_list)\n            #print(curr_let)\n        if counter < target:\n            for k in range(counter):\n                iter_list += prev_let\n        else:\n            iter_list += prev_let + str(counter)\n        out_list.append(iter_list)\n\n    return out_list","examples":[{"input":"array = ['aaaaaaaaaaaaaaaaaaabbcccccccccccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'], target = 3","output":"out_string = ['a19bbc27a30']","explanation":""},{"input":"Input array = ['aaabbcccccaaaabcccd', 'aa', 'bccdabbbbbbaaaaa'], target = 3","output":"out_string = ['a3bbc5a4bc3d', 'aa', 'bccdab6a5']","explanation":""}],"createdAt":1789166449348}]</script>
+<script type="application/json" id="seedData">[{"id":"entry_1789182165769_ra6w4","title":"55. Jump Game","difficulty":"Medium","types":[],"prompt":"You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position.\n\nReturn true if you can reach the last index, or false otherwise.","language":"Python","code":"class Solution(object):\n    def canJump(self, nums):\n        if len(nums) == 1:\n            return True\n\n        max_reach = 0\n\n        for i in range(len(nums) - 1):\n            if max_reach < i:\n                return False\n\n            max_reach = max(max_reach, nums[i] + i)\n\n            if max_reach >= len(nums) - 1:\n                return True\n\n        return False","examples":[{"input":"nums = [2,3,1,1,4]","output":"True","explanation":"Jump 1 step from index 0 to 1, then 3 steps to the last index."},{"input":"nums = [3,2,1,0,4]","output":"False","explanation":"You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index."}],"createdAt":1789182165769},{"id":"entry_1789179766111_4q0ie","title":"18. 4Sum","difficulty":"Medium","types":["Array","Two Pointers","Sorting"],"prompt":"Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:  0 <= a, b, c, d < n a, b, c, and d are distinct. nums[a] + nums[b] + nums[c] + nums[d] == target You may return the answer in any order.","language":"Python","code":"class Solution(object):\n    def fourSum(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: int\n        :rtype: List[List[int]]\n        \"\"\"\n\n        #O(nlogn)\n        nums.sort()\n        all_zero_sums = []\n        adict = {}\n\n        #O(n^2)\n        for i in range(len(nums)-3):\n            for j in range(i+1, len(nums)-2):\n                left = j+1\n                right = len(nums) - 1\n                while left < right:\n                    appended_nums = [nums[i], nums[j], nums[left], nums[right]]\n                    summ = nums[i] + nums[j] + nums[left] + nums[right]\n                    if summ == target and (nums[i], nums[j], nums[left], nums[right]) not in adict:\n                        all_zero_sums.append(appended_nums)\n                        adict[(nums[i], nums[j], nums[left], nums[right])] = 0\n                \n                    if summ < target:\n                        left += 1\n                    elif summ > target:\n                        right -= 1\n                    else:\n                        left += 1\n        return all_zero_sums\n\n        #total runtime O(nlogn) + O(n^2) dominated by O(n^2)","examples":[{"input":"nums = [1,0,-1,0,-2,2], target = 0","output":"[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]","explanation":""},{"input":"nums = [2,2,2,2,2], target = 8","output":"[[2,2,2,2]]","explanation":""}],"createdAt":1789179766111},{"id":"entry_1789179138967_krq9o","title":"15. 3Sum","difficulty":"Medium","types":["Array","Two Pointers","Sorting"],"prompt":"Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.\n\nNotice that the solution set must not contain duplicate triplets.","language":"Python","code":"class Solution(object):\n    def threeSum(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: List[List[int]]\n        \"\"\"\n\n        #O(nlogn)\n        nums.sort()\n        all_zero_sums = []\n        adict = {}\n\n        #O(n^2)\n        for i in range(len(nums)-2):\n            left = i+1\n            right = len(nums) - 1\n            while left < right:\n                appended_nums = [nums[i], nums[left], nums[right]]\n                summ = nums[i] + nums[left] + nums[right]\n                if summ == 0 and (nums[i], nums[left], nums[right]) not in adict:\n                    all_zero_sums.append(appended_nums)\n                    adict[(nums[i], nums[left], nums[right])] = 0\n            \n                if summ < 0:\n                    left += 1\n                elif summ > 0:\n                    right -= 1\n                else:\n                    left += 1\n        return all_zero_sums\n\n        #total runtime O(nlogn) + O(n^2) dominated by O(n^2)\n","examples":[{"input":"nums = [-1,0,1,2,-1,-4]","output":"[[-1,-1,2],[-1,0,1]]","explanation":"nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0. nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0. nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0. The distinct triplets are [-1,0,1] and [-1,-1,2]. Notice that the order of the output and the order of the triplets does not matter."},{"input":"nums = [0,1,1]","output":"[]","explanation":"The only possible triplet does not sum up to 0."},{"input":"[0,0,0]","output":"[[0,0,0]]","explanation":"The only possible triplet sums up to 0."}],"createdAt":1789179138967},{"id":"entry_1789178895257_r6h8z","title":"16. 3Sum Closest","difficulty":"Medium","types":["Array","Two Pointer"],"prompt":"You are given an integer array nums of length n and an integer target.\n\nFind three integers at distinct indices in nums such that the sum is closest to target.\n\nReturn the sum of the three integers.\n\nYou may assume that each input would have exactly one solution.","language":"Python","code":"class Solution(object):\n    def threeSumClosest(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: int\n        :rtype: int\n        \"\"\"\n\n        closest_sum = nums[0] + nums[1] + nums[2]\n        nums.sort()\n        \n        for i in range(len(nums) - 2):\n            left = i+1\n            right = len(nums) - 1\n\n            while left < right:\n                curr = nums[i] + nums[left] + nums[right]\n                \n                if abs(target - curr) < abs(target - closest_sum):\n                    closest_sum = curr\n                \n                if curr < target:\n                    left+=1\n                elif curr > target:\n                    right-=1\n                else:\n                    return curr\n        return closest_sum","examples":[{"input":"nums = [-1,2,1,-4], target = 1","output":"2","explanation":"The sum that is closest to the target is 2. (-1 + 2 + 1 = 2)."},{"input":"nums = [0,0,0], target = 1","output":"0","explanation":"The sum that is closest to the target is 0. (0 + 0 + 0 = 0)."}],"createdAt":1789178895257},{"id":"entry_1789166851864_k4nu6","title":"Data Expansion of Strings","difficulty":"Medium","types":["Strings"],"prompt":"Expand the given strings out. Each time you have a number following a letter, expanded the letter out that many times in total consecutively.","language":"","code":"def expand_strings(array):\n    out_list = []\n    for string in array:\n        iter_string = \"\"\n        prev_let = \"\"\n        count_str = \"\"\n        for let in string:\n            if let.isalpha():\n                iter_string += let\n                count_str = \"\"\n            else:\n                if prev_let.isalpha():\n                    for i in range(int(let)-1):\n                        iter_string += prev_let\n                    count_str += let\n                else:\n                    count_str += let\n                    num = int(count_str) - int(count_str[0:len(count_str)-1])\n                    for i in range(num):\n                        iter_string += iter_string[-1]\n            prev_let = let\n        out_list.append(iter_string)\n    return out_list","examples":[{"input":"compressed_strings = ['a3bbc5a4bc3d', 'aa', 'bccdab6a5']","output":"expanded_strings = ['aaabbcccccaaaabcccd', 'aa', 'bccdabbbbbbaaaaa']","explanation":""},{"input":"compressed_strings  = ['a101bb']","output":"expanded_strings  = ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb']","explanation":""}],"createdAt":1789166851864},{"id":"entry_1789166449348_x85uz","title":"Data Compression of Strings","difficulty":"Medium","types":["Strings"],"prompt":"Compress a list of strings down into a simplified format. Compress when the letter is seen >= target times consecutively.","language":"","code":"def compress_strings(array, target):\n    out_list = []\n    for i in range(len(array)):\n        string = array[i]\n        prev_let = \"\"\n        iter_list = \"\"\n        counter = 0\n        for j in range(len(string)):\n            curr_let = string[j]\n            if curr_let == prev_let:\n                counter+=1\n            else:\n                if counter < 3:\n                    for k in range(counter):\n                        iter_list += prev_let\n                else:\n                    iter_list += prev_let + str(counter)\n                counter = 1\n            prev_let = curr_let\n            #print(iter_list)\n            #print(curr_let)\n        if counter < target:\n            for k in range(counter):\n                iter_list += prev_let\n        else:\n            iter_list += prev_let + str(counter)\n        out_list.append(iter_list)\n\n    return out_list","examples":[{"input":"array = ['aaaaaaaaaaaaaaaaaaabbcccccccccccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'], target = 3","output":"out_string = ['a19bbc27a30']","explanation":""},{"input":"Input array = ['aaabbcccccaaaabcccd', 'aa', 'bccdabbbbbbaaaaa'], target = 3","output":"out_string = ['a3bbc5a4bc3d', 'aa', 'bccdab6a5']","explanation":""}],"createdAt":1789166449348}]</script>
 <script>
 (function(){
   const STORAGE_KEY = 'leetcode-entries';
@@ -1046,4 +1013,4 @@
 </script>
 
 
-</div><div id="hl-aria-live-message-container" aria-live="polite" class="visually-hidden"></div><div id="hl-aria-live-alert-container" role="alert" aria-live="assertive" class="visually-hidden"></div><span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span><span id="PING_CONTENT_DLS_POPUP" style="display: none;"></span><div style="background-color: transparent; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; bottom: 15px; display: block; margin: 0px; opacity: 1; padding: 0px; position: fixed; right: 15px; z-index: 2147483647;"></div></body></html>
+</div><div id="hl-aria-live-message-container" aria-live="polite" class="visually-hidden"></div><div id="hl-aria-live-alert-container" role="alert" aria-live="assertive" class="visually-hidden"></div><span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span><span id="PING_CONTENT_DLS_POPUP" style="display: none;"></span><div style="background-color: transparent; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; bottom: 15px; display: block; margin: 0px; opacity: 1; padding: 0px; position: fixed; right: 15px; z-index: 2147483647;"></div><span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>
